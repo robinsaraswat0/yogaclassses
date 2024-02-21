@@ -7,16 +7,23 @@ import {
     MY_BOOKINGS_FAIL,
 } from "../constants/bookingConstants"
 
-export const newBooking = (booking) => async (dispatch) => {
+import { BookingServices } from "../../supplier"
+
+export const newBooking = (selectedDateFrom,selectedDateTo,teacher,id) => async (dispatch) => {
     try {
         dispatch({ type: NEW_BOOKING_REQUEST })
-
         const config = {
             headers: {
                 "Content-Type": "application/json",
             },
         }
-        const { data } = await BookingServices.createBooking(booking, config)
+        console.log(selectedDateFrom,selectedDateTo,"ACTION BOLTE")
+        const booking={
+            "from":selectedDateFrom,
+            "to":selectedDateTo,
+            "teacher":teacher
+        }
+        const { data } = await BookingServices.createBooking(booking,id, config)
 
         dispatch({ type: NEW_BOOKING_SUCCESS, payload: data })
     } catch (error) {

@@ -11,9 +11,20 @@ const bookingSchema = new mongoose.Schema({
     ref: 'YogaClass', 
     required: true 
   },
+  teacher:{
+    type:String
+  },
   bookedAt: { 
     type: Date, 
-    default: Date.now },
+    default: Date.now 
+  },
+  from:{
+    type:String
+  },
+  to:{
+    type:String
+  }
+  
 });
 
 const Booking = mongoose.model('Booking', bookingSchema);

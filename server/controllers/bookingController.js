@@ -1,12 +1,18 @@
 const Booking = require("../models/Booking");
 const YogaClass = require("../models/YogaClass")
+const mongoose= require('mongoose');
 
 exports.createBooking = async(req,res,next) => {
     try {
         const classId = req.params.id;
+        const {from,to,teacher} = req.body;
+        console.log(classId)
         const booking = await Booking.create({
             user:req.user.id,
-            yogaClass:classId
+            yogaClass:classId,
+            from,
+            to,
+            teacher
         })
         const yogaClass = await YogaClass.findById(classId);
         bookCounter = yogaClass.bookedCounter; 
@@ -30,5 +36,21 @@ exports.bookingList = async(req,res,next) => {
         })
     } catch (error) {
         console.log(error)
+    }
+}
+
+exports.getClassCount = async(req,res,next)=>{
+    try {
+        const teacher = req.query.teacher;
+
+        const booked = await Booking.find({"teacher":teacher});
+
+        console.log(booked)
+        res.status(201).json({
+            success:true,
+            classCount:booked.length
+        })
+    } catch (error) {
+       console.log(error) 
     }
 }

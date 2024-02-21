@@ -32,7 +32,7 @@ const Nav = () => {
             </Link>
           </div>
         </div>
-        {isAuthenticated ? <button onClick={signOut}>Logout</button> :  <Link to="/login">
+        {isAuthenticated ? <><p className="ml-[400px] font-bold">{user.firstName}  <button className="bg-orange-400 w-28 h-10 rounded-lg text-white font-bold px-3" onClick={signOut}>Logout</button></p>  </>:  <Link to="/login">
           <div className="text-orange-500 font-bold">Login</div>
         </Link>}
       </div>

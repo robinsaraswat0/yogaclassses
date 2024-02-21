@@ -31,7 +31,7 @@ exports.createYogaClass=async(req,res)=>{
 exports.getAllYogaClasses = async(req,res,next)=>{
     try {
         let search = req.query.keyword;
-        console.log(search,"Search")
+        // console.log(search,"Search")
         // let teacherName = req.query.teacher;
         let level = req.query.level ? req.query.level : [];
         let style = req.query.style ? req.query.style : [];

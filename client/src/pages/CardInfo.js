@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import { useParams } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { getClassDetails } from '../Redux/actions/yogaClassActions'
 import Loader from '../components/loader/Loader'
+import ConfirmationModal from '../components/Confirmation'
+
 const CardInfo = () => {
+    const [confirmationModal,setConfirmationModal] = useState(null)
+    const [selectedDateFrom,setSelectedDateFrom]=useState(``);
+    const [selectedDateTo,setSelectedDateTo]=useState('');
     const dispatch = useDispatch();
     const {id} = useParams();
 
@@ -62,7 +67,25 @@ const CardInfo = () => {
     <span>{classD.rating}</span>
     </li>
     </ul>
-    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Booking</button>
+    <div>
+      <button
+            onClick={() =>
+              setConfirmationModal({
+                btn1Text: "Book Class",
+                btn2Text: "Cancel",
+                btn2Handler: () => setConfirmationModal(null),
+              })
+            }
+            className="px-8 py-2 text-sm font-medium text-richblack-300"
+          >
+            <div className="flex items-center gap-x-2">
+              
+              <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Booking</button>
+            </div>
+          </button>
+          {confirmationModal && <ConfirmationModal modalData={confirmationModal}  selectedDateFrom={selectedDateFrom} setSelectedDateFrom={setSelectedDateFrom} selectedDateTo={selectedDateTo} setSelectedDateTo={setSelectedDateTo} teacher={classD.teacherName}/>}
+    </div>
+
     </div>
            </div>
     
