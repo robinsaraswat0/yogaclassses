@@ -34,7 +34,7 @@ export const AuthServices = {
 
 export const BookingServices = {
     createBooking:(booking,classId) => requests.post(`/booking/createBooking/${classId}`,booking),
-    getMyBookings:(bookingData)=> requests.get("/yogaClass/getBookings",bookingData)
+    getMyBookings:()=> requests.get("/booking/getBookings")
 }
 
 export const YogaClassServices = {

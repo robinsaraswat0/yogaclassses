@@ -13,7 +13,6 @@ const IconBtn = ({
     type,
 }) => {
   const Icon=Icons[iconName];
-  console.log("iconbtn")
   return (
     <button 
     disabled={disabled}

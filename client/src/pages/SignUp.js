@@ -32,7 +32,6 @@ const SignUp = () => {
                 callback: (response) => {
                     // reCAPTCHA solved, allow signInWithPhoneNumber.
                     this.onSignInSubmit()
-                    console.log("recatcha")
                 },
                 defaultCountry: "IN",
             }
@@ -42,7 +41,6 @@ const SignUp = () => {
         e.preventDefault()
         configureCaptcha()
         const phoneNumber = "+91" + formData.mobile
-        console.log("phone number", phoneNumber)
 
         const appVerifier = window.recaptchaVerifier
 
@@ -51,26 +49,22 @@ const SignUp = () => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
                 // user in with confirmationResult.confirm(code).
                 window.confirmationResult = confirmationResult
-                console.log("OTP has been sent")
                 // ...
             })
             .catch((error) => {
                 // Error; SMS not sent
                 // ...
-                console.log("sms not sent")
             })
     }
     const onSubmitOTP = async(e) => {
         e.preventDefault()
         const code = formData.otp
-        console.log(code)
 
         await window.confirmationResult
             .confirm(code)
             .then((result) => {
                 // User signed in successfully.
                 const user = result.user
-                console.log(JSON.stringify(user))
                 // ...
             })
             .catch((error) => {

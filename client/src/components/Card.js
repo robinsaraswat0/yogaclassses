@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CiCalendar } from "react-icons/ci";
+
 const Card = ({style, level,title, teacher, price, img, _id, rating }) => {
+  const location = useLocation();
   return (
     <div>
       <div className="relative m-6 flex h-[360px] w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
@@ -48,7 +50,8 @@ const Card = ({style, level,title, teacher, price, img, _id, rating }) => {
           </div>
           <Link to={`/cardDetails/${_id}`}>
             <div className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-              Join
+            {location.pathname === "/myBookings" ? <>View</>  : <>Join</> }
+              
             </div>
           </Link>
         </div>

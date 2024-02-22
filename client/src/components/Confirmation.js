@@ -19,7 +19,6 @@ const ConfirmationModal = ({modalData,selectedDateFrom,setSelectedDateFrom,selec
             setSelectedDateTo(date);
         }
     }
-  console.log(selectedDateFrom)
   return (
     <div className="fixed inset-0 z-[1000] backdrop-blur-sm !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 ">
     <div className="w-[380px] h-[150px] pl-[30px] rounded-lg border border-richblack-400 bg-orange-400 bg-opacity-80  p-6">

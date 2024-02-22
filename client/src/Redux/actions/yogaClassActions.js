@@ -8,16 +8,22 @@ import {
     CLEAR_ERRORS
 } from "../constants/yogaClassConstants"
 import { YogaClassServices } from "../../supplier";
-export const getClasses = (keyword,level,style,time) => async(dispatch) => {
+export const getClasses = (keyword,level,style,time,price) => async(dispatch) => {
     try {
         dispatch({type: ALL_CLASS_REQUEST});
-        console.log(level,"level")
         let link = `/yogaClass/getAllYogaClasses?keyword=${keyword}`;
 
-        console.log(link)
         if(level.length){
             for(let i=0;i<level.length;i++){
                 link = link.concat(`&level[${i}]=${level[i]}`)
+            }
+        }
+
+        if(price.length){
+            if(price[2]==3 || price[2] == 4){
+                link = link.concat(`&price[gt]=${price[0]}&price[lt]=${price[1]}`)
+            }else{
+                link=link.concat(`&price[gte]=${price[0]}&price[lte]=${price[1]}`)
             }
         }
 
@@ -33,7 +39,6 @@ export const getClasses = (keyword,level,style,time) => async(dispatch) => {
             }
         }
 
-        console.log(link)
 
         const {data} = await YogaClassServices.getYogaClasses(link);
 

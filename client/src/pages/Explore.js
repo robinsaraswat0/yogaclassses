@@ -11,13 +11,14 @@ const Explore = () => {
   const [level,setLevels] = useState([]);
   const [style,setStyles] = useState([]);
   const [time,setTime] = useState([]);
+  const [price,setPrice] = useState([])
 
   const {classes,error,loading} = useSelector(state=>state.classes)
   useEffect(()=>{
     if(error){
       dispatch(clearErrors())
     }
-    dispatch(getClasses("",level,style,time))
+    dispatch(getClasses("",level,style,time,price))
   },[])
   return (
     <div >
@@ -25,9 +26,9 @@ const Explore = () => {
     <Nav/>
     </div>
     <div className='flex relative'>
-    <Filter level={level} setLevels={setLevels} style={style} setStyles={setStyles} time={time} setTime={setTime}/>
+    <Filter level={level} setLevels={setLevels} style={style} setStyles={setStyles} time={time} setTime={setTime} price={price} setPrice={setPrice}/>
       <div className="flex ">
-    <div  className=" grid grid-cols-2 gap-3">
+    <div  className=" grid grid-cols-3 gap-3">
     {loading ?
       <div className="absolute" >
       <Loader/> 

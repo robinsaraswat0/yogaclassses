@@ -205,19 +205,22 @@ export const courses = [
         {
             price: '1000 to 2000',
             name:'1000 to 2000',
-            
+            id:1
          },
          {
             price: '2000 to 3000',
             name: '2000 to 3000',
+            id:2
          },
          {
             price: '<1000',
             name:'<1000',
+            id:3
          },
          {
             price: '>3000',
             name:'>3000',
+            id:4
          }
     ]
     

@@ -6,7 +6,7 @@ import { styles } from '../data/data'
 import { useDispatch } from 'react-redux'
 import { getClasses } from '../Redux/actions/yogaClassActions'
 
-const Filter = ({level,setLevels,style,setStyles,time,setTime}) => {
+const Filter = ({level,setLevels,style,setStyles,time,setTime,price,setPrice}) => {
     const dispatch = useDispatch();
     const handleLevelChange=(e)=>{
       if(e.target.checked){
@@ -29,10 +29,22 @@ const Filter = ({level,setLevels,style,setStyles,time,setTime}) => {
         setTime(time=>time.filter(value => value!=e.target.name))
       }
     }
+
+    const handlePriceChange = (e)=>{
+      if(Number(e.target.id) === 1){
+        setPrice([1000,2000,1])
+      }else if(Number(e.target.id) === 2){
+        setPrice([2000,3000,2])
+      }else if(Number(e.target.id) === 3){
+        setPrice([0,1000,3])
+      }else if(Number(e.target.id) === 4){
+        setPrice([3000,Number.MAX_SAFE_INTEGER,4])
+      }
+    }
   
     useEffect(()=>{
-      dispatch(getClasses("",level,style,time))
-    },[level,style,time])
+      dispatch(getClasses("",level,style,time,price))
+    },[level,style,time,price])
     return (
       <div >  
         <div className="flex ">
@@ -43,7 +55,7 @@ const Filter = ({level,setLevels,style,setStyles,time,setTime}) => {
         {
           levels.map((items)=>(
          <div>
-          <input type="checkbox" onChange={handleLevelChange} name={items.name}/>
+          <input type="checkbox" id={items.id} onChange={handleLevelChange} name={items.name}/>
           {items.level}
          </div>
           ))
@@ -52,16 +64,16 @@ const Filter = ({level,setLevels,style,setStyles,time,setTime}) => {
       </div>
        <div>
        <h1 className="text-1xl font-bold">Prices</h1>
-       {/* <div>
+       <div>
         {
           prices.map((items)=>(
          <div>
-          <input type="checkbox" onChange={handleChange} name={items.name}/>
+          <input type="radio" id={items.id} onChange={handlePriceChange} name="price"/>
           {items.price}
          </div>
           ))
         }
-       </div> */}
+       </div>
        </div>
       <div>
       <h1 className="text-1xl font-bold">Styles</h1>

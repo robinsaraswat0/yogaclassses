@@ -6,7 +6,6 @@ exports.createBooking = async(req,res,next) => {
     try {
         const classId = req.params.id;
         const {from,to,teacher} = req.body;
-        console.log(classId)
         const booking = await Booking.create({
             user:req.user.id,
             yogaClass:classId,
@@ -24,11 +23,15 @@ exports.createBooking = async(req,res,next) => {
         })
     } catch (error) {
         console.log(error)
+        res.status(500).json({
+            success:false,
+            error:error
+          })
     }
 }
 exports.bookingList = async(req,res,next) => {
     try {
-        const bookings = await Booking.find({user:req.user.id}).populate("user yogaClass");
+        const bookings = await Booking.find({user:req.user.id}).populate("yogaClass");
 
         res.status(201).json({
             success:true,
@@ -36,6 +39,10 @@ exports.bookingList = async(req,res,next) => {
         })
     } catch (error) {
         console.log(error)
+        res.status(500).json({
+            success:false,
+            error:error
+          })
     }
 }
 
@@ -45,12 +52,15 @@ exports.getClassCount = async(req,res,next)=>{
 
         const booked = await Booking.find({"teacher":teacher});
 
-        console.log(booked)
         res.status(201).json({
             success:true,
             classCount:booked.length
         })
     } catch (error) {
        console.log(error) 
+       res.status(500).json({
+        success:false,
+        error:error
+      })
     }
 }

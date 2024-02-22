@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import  {userReducer} from "./Redux/reducer/userReducer"
 import { yogaClassesReducer,classDetailsReducer } from "./Redux/reducer/yogaClassReducer";
+import { myBookingsReducer } from "./Redux/reducer/bookingReducer";
 
 const reducer = combineReducers({
     user: userReducer,
     classes:yogaClassesReducer,
-    classDetails:classDetailsReducer
+    classDetails:classDetailsReducer,
+    myBookings:myBookingsReducer
   });
   
   let initialState = {};

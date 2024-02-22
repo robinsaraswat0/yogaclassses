@@ -19,7 +19,6 @@ export const login = (mobile) => async(dispatch) => {
 
         const config = {headers: {"Content-Type": "application/json"}};
 
-        console.log(mobile,"userActions")
 
         const {data} = await AuthServices.login({mobile},config)
 

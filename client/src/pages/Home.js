@@ -15,8 +15,7 @@ const Home = () => {
 
   const searchHit = (e)=>{
     if(e.key === "Enter"){
-      console.log(searchInput)
-      dispatch(getClasses(searchInput,[],[],[]))
+      dispatch(getClasses(searchInput,[],[],[],[]))
     }
   }
   
@@ -25,10 +24,9 @@ const Home = () => {
     if(error){
       dispatch(clearErrors());
     }
-    dispatch(getClasses("",[],[],[]))
+    dispatch(getClasses("",[],[],[],[]))
   },[error])
 
-  console.log(classes)
   return (
     <>
       {classes === undefined ? <Loader/>:<>
@@ -45,7 +43,7 @@ const Home = () => {
     <input type="search" placeholder='Find your yoga practice' className="border rounded-full w-[350px] py-1 pl-2" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} onKeyDown={searchHit}/>
     </div>
    <div className="mt-10">
-   <div  className=" grid grid-cols-2  ">
+   <div  className=" grid grid-cols-3  ">
  {
    classes?.map((item)=>(
       <div key={item.id}>

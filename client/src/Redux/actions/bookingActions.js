@@ -17,7 +17,6 @@ export const newBooking = (selectedDateFrom,selectedDateTo,teacher,id) => async 
                 "Content-Type": "application/json",
             },
         }
-        console.log(selectedDateFrom,selectedDateTo,"ACTION BOLTE")
         const booking={
             "from":selectedDateFrom,
             "to":selectedDateTo,
@@ -40,7 +39,7 @@ export const myBookings = () => async (dispatch) => {
 
         const { data } = await BookingServices.getMyBookings()
 
-        dispatch({ type: MY_BOOKINGS_SUCCESS, payload: data.bookings })
+        dispatch({ type: MY_BOOKINGS_SUCCESS, payload: data.BookingList })
     } catch (error) {
         dispatch({
             type: MY_BOOKINGS_FAIL,

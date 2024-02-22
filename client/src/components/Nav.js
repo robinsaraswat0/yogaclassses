@@ -2,16 +2,9 @@ import React from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { logout } from "../Redux/actions/userActions";
+import DropDownMenu from "./Dropdown";
 const Nav = () => {
-  const dispatch = useDispatch();
   const { user, isAuthenticated, loading } = useSelector((state) => state.user);
-  console.log(user);
-
-  const signOut = () => {
-    dispatch(logout());
-  };
   return (
     <div>
       <div className=" flex justify-between">
@@ -34,15 +27,7 @@ const Nav = () => {
         </div>
         {isAuthenticated ? (
           <>
-            <p className="font-bold">
-              {user.firstName}{" "}
-              <button
-                className="bg-orange-400 w-28 h-10 rounded-lg text-white font-bold px-3"
-                onClick={signOut}
-              >
-                Logout
-              </button>
-            </p>{" "}
+          <DropDownMenu user={user}/>
           </>
         ) : (
           <Link to="/login">
