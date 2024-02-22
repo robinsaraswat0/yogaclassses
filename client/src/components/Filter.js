@@ -34,7 +34,7 @@ const Filter = ({level,setLevels,style,setStyles,time,setTime}) => {
       dispatch(getClasses("",level,style,time))
     },[level,style,time])
     return (
-      <div>  
+      <div >  
         <div className="flex ">
         <div className="flex flex-col gap-4">
       <div>

@@ -8,6 +8,7 @@ import Loader from "../components/loader/Loader"
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getClasses,clearErrors } from '../Redux/actions/yogaClassActions'
+import banner2 from "../Assets/yoga-class.jpg"
 const Home = () => {
   const dispatch = useDispatch();
   const [searchInput,setSearchInput]=useState('');
@@ -37,14 +38,14 @@ const Home = () => {
     <div className="text-black font-medium"> Begin your yoga journey.</div>
   <div className="text-black font-medium">Join yoga classNamees designed for complete beginners.</div>
     </div>
-    <div className="mt-10">
+    <div className="mt-10 relative">
      <div className="text-orange-400 text-2xl font-medium mb-3">Monthly Yoga for Beginners</div>
- 
+     <img src={banner2} alt="yoga-class-image" width="150px" className="absolute left-[550px] top-[-70px]"/>
    
     <input type="search" placeholder='Find your yoga practice' className="border rounded-full w-[350px] py-1 pl-2" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} onKeyDown={searchHit}/>
     </div>
    <div className="mt-10">
-   <div  className=" grid grid-cols-3">
+   <div  className=" grid grid-cols-2  ">
  {
    classes?.map((item)=>(
       <div key={item.id}>

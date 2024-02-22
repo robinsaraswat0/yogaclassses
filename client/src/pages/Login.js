@@ -40,41 +40,41 @@ const Login = () => {
 
     dispatch(login(formData.mobile))
 
-    const appVerifier = window.recaptchaVerifier;
+    // const appVerifier = window.recaptchaVerifier;
 
-    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        window.confirmationResult = confirmationResult;
-        console.log("OTP has been sent");
-        // ...
-      })
-      .catch((error) => {
-        // Error; SMS not sent
-        // ...
-        console.log("sms not sent");
-      });
+    // signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    //   .then((confirmationResult) => {
+    //     // SMS sent. Prompt user to type the code from the message, then sign the
+    //     // user in with confirmationResult.confirm(code).
+    //     window.confirmationResult = confirmationResult;
+    //     console.log("OTP has been sent");
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     // Error; SMS not sent
+    //     // ...
+    //     console.log("sms not sent");
+    //   });
   };
   const onSubmitOTP = (e) => {
     e.preventDefault();
     const code = formData.otp;
     console.log(code);
-    window.confirmationResult
-    .confirm(code)
-    .then((result) => {
-      // User signed in successfully.
-      const user = result.user;
-      console.log(JSON.stringify(user));
-      // navigate("/")
-      // ...
-    })
-    .catch((error) => {
-      // User couldn't sign in (bad verification code?)
-      alert("user otp not verified");
-      // ...
-    });
-    navigate("/")
+    // window.confirmationResult
+    // .confirm(code)
+    // .then((result) => {
+    //   // User signed in successfully.
+    //   const user = result.user;
+    //   console.log(JSON.stringify(user));
+    //   // navigate("/")
+    //   // ...
+    // })
+    // .catch((error) => {
+    //   // User couldn't sign in (bad verification code?)
+    //   alert("user otp not verified");
+    //   // ...
+    // });
+    navigate("/myBookings")
   };
 
   return (

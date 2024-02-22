@@ -20,15 +20,19 @@ const Explore = () => {
     dispatch(getClasses("",level,style,time))
   },[])
   return (
-    <div>
+    <div >
     <div className="mb-6">
     <Nav/>
     </div>
-    <div className='flex'>
+    <div className='flex relative'>
     <Filter level={level} setLevels={setLevels} style={style} setStyles={setStyles} time={time} setTime={setTime}/>
       <div className="flex ">
-    <div  className=" grid grid-cols-3">
-    {loading ? <Loader/> : 
+    <div  className=" grid grid-cols-2 gap-3">
+    {loading ?
+      <div className="absolute" >
+      <Loader/> 
+      </div>
+     : 
       classes?.map((item)=>(
          <div key={item.id}>
           <Card title={item.name} description={item.description} teacher={item.teacherName} price={item.price} img={item.img} _id={item._id} style={item.style} rating={item.rating} level={item.level}/>
